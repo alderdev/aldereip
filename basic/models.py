@@ -2,8 +2,15 @@ from django.db import models
 
 # Create your models here.
 
+#料品分類：成品 半成品
+class ProductCategory(models.Model):
+    description = models.CharField(max_length=36, null=False, blank=False)
+    invalid = models.BooleanField(default=False)
 
-#料品生命週期狀態
+    def __str__(self):
+        return self.description
+
+#料品生命週期狀態： 停產 量產中
 class CycleStatus(models.Model):
     description = models.CharField(max_length=36, null=False, blank=False)
     invalid = models.BooleanField(default=False)
@@ -15,7 +22,8 @@ class CycleStatus(models.Model):
 class Product(models.Model):
     sap_no = models.BigIntegerField(primary_key=True) # SAP料號 -9223372036854775808 to 9223372036854775807
     product_desc = models.CharField(max_length=36, null=False, blank=False) # 品名
-    specification = models.CharField(max_length=100, null=False, blank=False) # 規格
+    specification = models.CharField(max_length=100, null=True, blank=True) # 規格
+    category = models.ForeignKey(ProductCategory) #料品分類
     cycle_status = models.ForeignKey(CycleStatus) # 料品狀態
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False) #
     modify = models.DateTimeField(auto_now_add=False, auto_now =True) #
