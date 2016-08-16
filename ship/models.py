@@ -2,7 +2,7 @@ from django.db import models
 from basic.models import Product
 
 # Create your models here.
-
+#幣別
 class Currency(models.Model):
     code = models.CharField(primary_key=True, max_length=3, )
     description = models.CharField(max_length=36, null=False, blank=False)
@@ -10,9 +10,9 @@ class Currency(models.Model):
     def __str__(self):
         return self.description
 
-
+#客戶
 class Customer(models.Model):
-    sap_no = models.CharField(max_length=36, null=True, blank=True)
+    sap_no = models.BigIntegerField(primary_key=True) # SAP客尸編號 -9223372036854775808 to 9223372036854775807
     title = models.CharField(max_length=36, null=False, blank=False)
     address = models.CharField(max_length=100, null=True, blank=True)
     contect = models.CharField(max_length=100, null=True, blank=True)
@@ -28,7 +28,7 @@ class Customer(models.Model):
     def __str__(self):
         return ("%s : %s" % (self.sap_no,self.title ) )
 
-
+# 報價單
 class QuoteHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
     ord_date = models.DateField() #報價日期
@@ -40,7 +40,7 @@ class QuoteHead(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
 
-
+# 報價單明細
 class QuoteDetail(models.Model):
     quotehead = models.ForeignKey(QuoteHead) #報價單編號
     line_no = models.IntegerField() #行號
@@ -52,6 +52,7 @@ class QuoteDetail(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
 
+# 訂單
 class ShipOrderHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False)
     ord_date = models.DateField()
@@ -59,7 +60,7 @@ class ShipOrderHead(models.Model):
     default_delivery = models.DateField()
     head_memo = models.TextField()
 
-
+# 訂單明綑
 class ShipOrderDetail(models.Model):
     ships_order = models.ForeignKey(ShipOrderHead)
     order_line = models.IntegerField(default=1, blank=False, null=False)
