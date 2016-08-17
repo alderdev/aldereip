@@ -2,10 +2,37 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+
+from reportlab.pdfgen import canvas
 from .models import QuoteHead
 from .forms import QuoteHeadCreateForm
 
 # Create your views here.
+
+def export_pdf(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="Quotetion.pdf"'
+
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    #seal = '/static/img/alder_logo.png'
+    #p.drawImage(seal, 210,800, width=None, height=None)
+    p.setFont('Helvetica', 24)
+    p.drawCentredString(210, 800, "Alder Optomechanical Corp.")
+
+    p.setFont('Helvetica', 18)
+    p.drawString(190, 780, "QUOTATION")
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
+
+
 
 def ship_list(request):
     title = "銷售管理"

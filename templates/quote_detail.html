@@ -4,8 +4,7 @@
 
 
   <h1>{{ title }}</h1>
-
-{{ record.as_p}}
+<a href="/ship/export_pdf">Export PDF</a>
 <table class="table table-bordered">
   <tr>
     <td>報價單號</td>
@@ -27,9 +26,11 @@
   </tr>
   <tr>
     <td>有效日期</td>
-    <td>{{ record.effective_date | date:"Y-m-d" }}</td>
+    <td colspan="3">{{ record.effective_date | date:"Y-m-d" }}</td>
+  </tr>
+  <tr>
     <td>註記事項</td>
-    <td>{{ record.memo | linebreaks  }}</td>
+    <td colspan="3">{{ record.memo | linebreaks  }}</td>
   </tr>
 
 </table>
