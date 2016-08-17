@@ -1,3 +1,8 @@
+from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 from datetime import date
 from django.utils import timezone
 from django.db import models

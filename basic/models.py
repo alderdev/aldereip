@@ -20,7 +20,7 @@ class CycleStatus(models.Model):
 
 #料品
 class Product(models.Model):
-    sap_no = models.BigIntegerField(primary_key=True) # SAP料號 -9223372036854775808 to 9223372036854775807
+    sap_no = models.CharField(primary_key=True, max_length=36) # SAP料號
     product_desc = models.CharField(max_length=36, null=False, blank=False) # 品名
     specification = models.CharField(max_length=100, null=True, blank=True) # 規格
     category = models.ForeignKey(ProductCategory) #料品分類
@@ -48,7 +48,7 @@ class ZmmsOption(models.Model):
     def __str__(self):
         return self.description
 
-#物料控制員 選項
+#物料控制 選項
 class MaterialCtrlOption(models.Model):
     description = models.CharField(max_length=36, null=False, blank=False)
     invalid = models.BooleanField(default=False)

@@ -23,6 +23,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^dps/',  include('dps.urls' , namespace="dps" )),
     url(r'^basic/',  include('basic.urls' , namespace="basic" )),
-    #url(r'^ship/',  include('ship.urls' , namespace="ship" )),
+    url(r'^ship/',  include('ship.urls' , namespace="ship" )),
     url(r'^$', alderhome ),
 ]

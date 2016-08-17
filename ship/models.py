@@ -8,11 +8,11 @@ class Currency(models.Model):
     description = models.CharField(max_length=36, null=False, blank=False)
 
     def __str__(self):
-        return self.description
+        return self.code
 
 #客戶
 class Customer(models.Model):
-    sap_no = models.BigIntegerField(primary_key=True) # SAP客尸編號 -9223372036854775808 to 9223372036854775807
+    sap_no = models.CharField(primary_key=True, max_length=18) # SAP客尸編號 -9223372036854775808 to 9223372036854775807
     title = models.CharField(max_length=36, null=False, blank=False)
     address = models.CharField(max_length=100, null=True, blank=True)
     contect = models.CharField(max_length=100, null=True, blank=True)
@@ -34,11 +34,18 @@ class QuoteHead(models.Model):
     ord_date = models.DateField() #報價日期
     customer = models.ForeignKey(Customer) #客戶編號
     effective_date = models.DateField() # 報價單有效日期
+    currency = models.ForeignKey( Currency )
     invalid = models.BooleanField(default=False) #作廢
     memo = models.TextField()
 
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
+
+
+    def get_absoulte_url(self):
+
+        return "/ship/detail/%s/" %( str(self.id) )
+
 
 # 報價單明細
 class QuoteDetail(models.Model):

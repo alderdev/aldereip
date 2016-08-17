@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'basic',
+    'ship',
     #'dps',
-    #'ship',
+
 ]
 
 MIDDLEWARE_CLASSES = [
