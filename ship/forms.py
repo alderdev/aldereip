@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea, CharField
-from .models import QuoteHead
+from .models import QuoteHead, QuoteDetail
 
 
 class QuoteHeadCreateForm(forms.ModelForm):
@@ -13,13 +13,8 @@ class QuoteHeadCreateForm(forms.ModelForm):
 
         }
 
-class QuoteHeadDetailForm(forms.ModelForm):
+class QuoteLineCreateForm(forms.ModelForm):
     class Meta:
-        model = QuoteHead
-        #fields = ["category", "zmms", "manage_memo" ]
-        exclude = ('create_at','modify' )
-        widgets = {
-            'customer': forms.TextInput(attrs={'size':20, 'title':'Customer Number', }) ,
-            #'product': forms.TextInput(attrs={'size':20, 'title':'Product Number', }) ,
-
-        }
+        model = QuoteDetail
+        fields = ["quotehead", "line_no", "product","unit_price","line_memo"   ]
+        #exclude = ('create_at','modify' )

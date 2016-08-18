@@ -12,5 +12,5 @@ urlpatterns = [
     #url(r'^update/(?P<id>\d+)/$', views.dps_update, name='update'),
     #url(r'^delete/(?P<id>\d+)/$', views.dps_delete),
     #url(r'^customertitle/(?P<id>\d+)/$', views.customer_name),
-    #url(r'^productdesc/(?P<id>\d+)/$', views.product_desc),
+    url(r'^productdesc/(?P<id>\d+)/$', views.product_desc),
 ]

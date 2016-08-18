@@ -38,10 +38,10 @@ class QuoteHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
     ord_date = models.DateField(default=timezone.now) #報價日期
     customer = models.ForeignKey(Customer) #客戶編號
-    effective_date = models.DateField() # 報價單有效日期
+    effective_date = models.DateField( default=timezone.now ) # 報價單有效日期
     currency = models.ForeignKey( Currency )
     invalid = models.BooleanField(default=False) #作廢
-    memo = models.TextField()
+    memo = models.TextField(null=True, blank=True)
 
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)

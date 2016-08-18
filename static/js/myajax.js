@@ -5,7 +5,7 @@ function showCustName(id)
 	var xmlhttp;
 	if (id=="")
 	  {
-		  document.getElementById("sap_no_customer").innerHTML="請輸入客戶編號";
+		  document.getElementById("span_title").innerHTML="請輸入客戶編號";
 		  //document.getElementById(id).innerHTML="œÐ¿é€JÄæŠìžê®Æ";
 		  return;
 	  }
@@ -25,8 +25,8 @@ function showCustName(id)
     if (xmlhttp.readyState==4 &&xmlhttp.status==404){
       window.alert("無效的客戶編號");
       document.getElementById("title_customer").value = "";
-      document.getElementById("sap_no_customer").focus() ;
-      document.getElementById("sap_no_customer").selected = true;
+      document.getElementById("id_customer").focus() ;
+      document.getElementById("id_customer").selected = true;
       return;
     }
 
@@ -38,14 +38,15 @@ function showCustName(id)
   				var x = xmlhttp.responseText.substring(start, end);
 
   			 	var str = x.split(',');
-          document.getElementById("id_customer").value = str[0];
-  				document.getElementById("sap_no_customer").value = str[1];
-  				document.getElementById("title_customer").value = str[2];
+  				document.getElementById("id_customer").value = str[0];
+  				//document.getElementById("title_customer").value = str[1];
+					document.getElementById("span_title").innerHTML= str[1];
+					//document.getElementById("id_customer").value = str[0];
 
 	    }
 	};
 
-	xmlhttp.open("GET","/dpsed/customertitle/"+id+"/",true);
+	xmlhttp.open("GET","/ship/showcustomer/"+id+"/",true);
 	xmlhttp.send();
 }
 
@@ -55,7 +56,7 @@ function showProudct(id)
 	var xmlhttp;
 	if (id=="")
 	  {
-		  document.getElementById("sap_no_customer").innerHTML="請輸入客戶編號";
+		  document.getElementById("sap_no").innerHTML="產品編號";
 		  //document.getElementById(id).innerHTML="œÐ¿é€JÄæŠìžê®Æ";
 		  return;
 	  }
@@ -75,8 +76,8 @@ function showProudct(id)
     if (xmlhttp.readyState==4 &&xmlhttp.status==404){
       window.alert("無效的料號");
       document.getElementById("product_desc").value = "";
-      document.getElementById("id_product").focus() ;
-      document.getElementById("sap_no_customer").selected = true;
+      document.getElementById("sap_no").focus() ;
+      document.getElementById("sap_no").selected = true;
       return;
     }
 
@@ -87,14 +88,16 @@ function showProudct(id)
   				var x = xmlhttp.responseText.substring(start, end);
 
   			 	var str = x.split(',');
-          document.getElementById("id_product").value = str[0];
-  				document.getElementById("sap_no_product").value = str[1];
-					document.getElementById("product_desc_span").value = str[2];
-  				document.getElementById("product_desc").value = str[2];
+          //document.getElementById("id_product").value = str[0];
+  				//document.getElementById("sap_no_product").value = str[1];
+					document.getElementById("span_product_desc").innerHTML= str[1];
+					//document.getElementById("product_desc_span").value = str[2];
+					document.getElementById("span_specification").innerHTML= str[2];
+  				//document.getElementById("specification").value = str[2];
 
 	    }
 	};
 
-	xmlhttp.open("GET","/dpsed/productdesc/"+id+"/",true);
+	xmlhttp.open("GET","/basic/productdesc/"+id+"/",true);
 	xmlhttp.send();
 }

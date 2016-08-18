@@ -4,18 +4,29 @@
 
   <h1>{{ title }}</h1>
 
-  {{ form.customer }}
+<form action="" method="POST">{% csrf_token %}
+  <p>
+    <label>Customer Number:</label><input id="id_customer" name="customer" size="20" title="Customer Number" type="text" onblur="showCustName(this.value)" cssStyle="width:60px" />
+    <span id="span_title"></span>
+  </p>
+  <p>
+    <label>Sales Name:</label>{{ form.request_user}}
+  </p>
+  <p>
+    <label>Quote Date:</label>{{ form.ord_date}}
+  </p>
+  <p>
+    <label>Effective Date:</label>{{ form.effective_date}}
+  </p>
+  <p>
+    <label>Currency:</label>{{ form.currency}}
+  </p>
+  <p>
+    <label>Comment:</label>{{ form.memo}}
+  </p>
 
-  {{ form.as_p}}
 
+
+  <button type="submit" class="btn btn-primary" >Save</button>
+</form>
 {% endblock content %}
-
-
-
-request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
-  ord_date = models.DateField(default=timezone.now) #報價日期
-  customer = models.ForeignKey(Customer) #客戶編號
-  effective_date = models.DateField() # 報價單有效日期
-  currency = models.ForeignKey( Currency )
-  invalid = models.BooleanField(default=False) #作廢
-  memo = models.TextField()

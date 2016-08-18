@@ -4,8 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 
 from reportlab.pdfgen import canvas
-from .models import QuoteHead
-from .forms import QuoteHeadCreateForm
+from .models import QuoteHead, Customer
+from .forms import QuoteHeadCreateForm, QuoteLineCreateForm
 
 # Create your views here.
 
@@ -34,6 +34,17 @@ def export_pdf(request):
 
 
 
+
+
+def customer_name(request,id):
+
+    obj = get_object_or_404( Customer, sap_no=id)
+    #print(obj.title)
+    return render(request, "ajax_customer.html", locals())
+
+
+
+
 def ship_list(request):
     title = "銷售管理"
 
@@ -54,6 +65,13 @@ def ship_list(request):
 def create_quote(request):
     title = "新增報價單"
     form = QuoteHeadCreateForm(request.POST or None)
+    if form.is_valid():
+        print("Successfully is_valid")
+        instance = form.save(commit=False)
+        instance.save()
+
+        messages.success(request, "Successfully Create")
+        return HttpResponseRedirect(instance.get_absoulte_url())
 
     return render(request, "quote_header.html", locals())
 
@@ -61,5 +79,18 @@ def create_quote(request):
 def quote_detail(request, id):
     title = "報價單明細"
     record = get_object_or_404( QuoteHead, id=id)
+
+    return render(request, "quote_detail.html", locals())
+
+
+def quote_create_line(request, id):
+    print("quote_create_line  Entry")
+    form = QuoteLineCreateForm(request.POST or None )
+    if form.is_valid():
+        print("Successfully is_valid")
+        instance = form.save(commit=False)
+        instance.save()
+        messages.success(request, "Successfully Create Line")
+        return HttpResponseRedirect(instance.get_absoulte_url())
 
     return render(request, "quote_detail.html", locals())

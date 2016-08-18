@@ -9,8 +9,11 @@ urlpatterns = [
     url(r'^$', views.ship_list),
     url(r'^create/$', views.create_quote),
     url(r'^detail/(?P<id>\d+)/$', views.quote_detail , name='detail'),
+
+    url(r'^detailadd/(?P<id>\d+)/$', views.quote_create_line),
+    url(r'^showcustomer/(?P<id>\d+)/$', views.customer_name),
+
     url(r'^export_pdf/$', views.export_pdf),
-    #url(r'^delete/(?P<id>\d+)/$', views.dps_delete),
-    #url(r'^customertitle/(?P<id>\d+)/$', views.customer_name),
+
     #url(r'^productdesc/(?P<id>\d+)/$', views.product_desc),
 ]
