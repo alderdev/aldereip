@@ -3,9 +3,35 @@
 {% block content %}
 
 
-  <p><h1>{{ title }}</h1></p>
-  <p><a href="/ship/create">Create New</a></p>
+  <p><h3>{{ title }}</h3></p>
+  <div>
+      <span class="label label-warning" ><a href="/ship/create">Create New</a></span>
+      <span align="right">
+          <div class="pagination">
+              <span class="step-links">
+                  {% if queryset.has_previous %}
+                      <a href="?page={{ queryset.previous_page_number }}">Previous</a>
+                  {% endif %}
 
+                  <span class="current">
+                      Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
+                  </span>
+
+                  {% if queryset.has_next %}
+                      <a href="?page={{ queryset.next_page_number }}">Next</a>
+                  {% endif %}
+              </span>
+          </div>
+      <span>
+  <div>
+
+    <nav aria-label="...">
+      <ul class="pagination">
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="active"><a href="#">1 <span class="sr-only">{{ queryset.number }}</span></a></li>
+        ...
+      </ul>
+    </nav>
 
 <div>
 <table class="table table-striped" >
