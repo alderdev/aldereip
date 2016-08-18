@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^create/$', views.create_quote),
     url(r'^detail/(?P<id>\d+)/$', views.quote_detail , name='detail'),
 
-    url(r'^detailadd/(?P<id>\d+)/$', views.quote_create_line),
+    url(r'^detailadd/$', views.quote_create_line),
     url(r'^showcustomer/(?P<id>\d+)/$', views.customer_name),
 
     url(r'^export_pdf/$', views.export_pdf),

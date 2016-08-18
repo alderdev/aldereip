@@ -36,14 +36,6 @@ def export_pdf(request):
 
 
 
-def customer_name(request,id):
-
-    obj = get_object_or_404( Customer, sap_no=id)
-    #print(obj.title)
-    return render(request, "ajax_customer.html", locals())
-
-
-
 
 def ship_list(request):
     title = "銷售管理"
@@ -65,6 +57,7 @@ def ship_list(request):
 def create_quote(request):
     title = "新增報價單"
     form = QuoteHeadCreateForm(request.POST or None)
+
     if form.is_valid():
         print("Successfully is_valid")
         instance = form.save(commit=False)
@@ -80,17 +73,54 @@ def quote_detail(request, id):
     title = "報價單明細"
     record = get_object_or_404( QuoteHead, id=id)
 
+    form = QuoteLineCreateForm(request.POST or None )
+    #print( form.quotehead.id )
+    if form.is_valid():
+
+        instance = form.save(commit=False)
+        print( instance.get_absoulte_url() )
+        instance.save()
+        messages.success(request, "Successfully Create Line")
+        return HttpResponseRedirect(instance.get_absoulte_url())
+
+
+
     return render(request, "quote_detail.html", locals())
 
 
-def quote_create_line(request, id):
-    print("quote_create_line  Entry")
+def quote_create_line(request):
+
     form = QuoteLineCreateForm(request.POST or None )
+    #print( form.quotehead.id )
     if form.is_valid():
-        print("Successfully is_valid")
+
         instance = form.save(commit=False)
+        print( instance.get_absoulte_url() )
         instance.save()
         messages.success(request, "Successfully Create Line")
         return HttpResponseRedirect(instance.get_absoulte_url())
 
     return render(request, "quote_detail.html", locals())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def customer_name(request,id):
+
+    obj = get_object_or_404( Customer, sap_no=id)
+    #print(obj.title)
+    return render(request, "ajax_customer.html", locals())

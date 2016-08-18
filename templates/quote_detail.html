@@ -32,19 +32,25 @@
 
 </table>
 
-
 <table class="table table-striped">
-  <form action="/ship/detailadd/{{ record.id }}" method="POST">{% csrf_token %}
+
+  <form action="/ship/detailadd/" method="POST">{% csrf_token %}
   <tr>
-    <th width="6%"><button type="submit" class="btn btn-primary" >Add in</button></th>
-    <th width="5%"><input id="line_no" name="line_no" size="4" type="text" cssStyle="width:10px" /></th>
-    <th width="8%"><input id="sap_no" name="sap_no" size="14" type="text" onblur="showProudct(this.value)" cssStyle="width:30px" /></th>
+
+
+
+    <th width="6%"><button type="submit" class="btn btn-primary" >Add in</button>
+
+    </th>
+    <th width="5%"><input id="id_quotehead" name="quotehead" size="8" type="hidden" value='{{ record.id }}' cssStyle="width:20px" /><input id="id_line_no" name="line_no" size="4" type="text" cssStyle="width:10px" />
+    <th width="8%"><input id="id_product" name="product" size="14" type="text" onblur="showProudct(this.value)" cssStyle="width:30px" /></th>
     <th width="15%"><span id="span_product_desc"></span></th>
     <th width="30%"><span id="span_specification"></span></th>
-    <th width="5%"><input id="unit_price" name="unit_price" size="8" type="text"  cssStyle="width:20px" /></th>
-    <th ><input id="line_memo" name="line_memo" size="40" type="text" cssStyle="width:160px" /></th>
+    <th width="5%"><input id="id_unit_price" name="unit_price" size="8" step="any" type="number"/>
+    <th ><input id="line_memo" name="line_memo" size="40"  maxlength="50" type="text" cssStyle="width:160px" />
   </tr>
 </form>
+
   <tr>
     <th width="6%">作廢註記</th>
     <th width="5%">行號</th>

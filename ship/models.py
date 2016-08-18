@@ -64,6 +64,11 @@ class QuoteDetail(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
 
+    def get_absoulte_url(self):
+        return "/ship/detail/%s/" %( str(self.quotehead.id ) )
+
+
+
 # 訂單
 class ShipOrderHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False)

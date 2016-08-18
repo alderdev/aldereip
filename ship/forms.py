@@ -18,3 +18,7 @@ class QuoteLineCreateForm(forms.ModelForm):
         model = QuoteDetail
         fields = ["quotehead", "line_no", "product","unit_price","line_memo"   ]
         #exclude = ('create_at','modify' )
+        widgets = {
+            'quotehead': forms.TextInput(attrs={'size':20, 'title':'Quote Number', }) ,
+            'product': forms.TextInput(attrs={'size':20, 'title':'Product Number', }) ,
+        }
