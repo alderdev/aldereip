@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>{{ title }}</h1>
+
+  {{ form.customer }}
+
+  {{ form.as_p}}
+
+{% endblock content %}
+
+
+
+request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
+  ord_date = models.DateField(default=timezone.now) #報價日期
+  customer = models.ForeignKey(Customer) #客戶編號
+  effective_date = models.DateField() # 報價單有效日期
+  currency = models.ForeignKey( Currency )
+  invalid = models.BooleanField(default=False) #作廢
+  memo = models.TextField()

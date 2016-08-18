@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content  %}
+
+
+  <div class="pagination">
+      <span>{{ title }}</span>
+      <span class="step-links">
+          {% if queryset.has_previous %}
+              <a href="?page={{ queryset.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
+          </span>
+
+          {% if queryset.has_next %}
+              <a href="?page={{ queryset.next_page_number }}">next</a>
+          {% endif %}
+      </span>
+  </div>
+
+
+<div>
+<table class="table table-striped" >
+  <tr>
+    <th>收單日期</th>
+    <th>單據分類</th>
+    <th>工單號碼</th>
+    <th>物料控管</th>
+    <th>銷售訂單</th>
+    <th>客戶</th>
+    <th>料號</th>
+    <th>品名</th>
+    <th>工單數量</th>
+    <th>需求日期</th>
+    <th>ZMMS</th>
+    <th>備料人</th>
+    <th>生管備註</th>
+  </tr>
+
+{% for record in queryset %}
+  <tr>
+    <td>{{ record.recevice_date | date:"Y-m-d" }}</td>
+    <td><a href='{{ record.get_absoulte_url }}'>{{ record.category }}</a></td>
+    <td><a href='{{ record.get_absoulte_url }}'>{{ record.work_order }}</a></td>
+    <td>{{ record.material_ctrl }}</td>
+    <td>{{ record.ships_order }}</td>
+    <td>{{ record.customer.title }}</td>
+    <td>{{ record.product.sap_no | truncatechars:16 }}</td>
+    <td>{{ record.product.product_desc | truncatechars:30 }}</td>
+    <td>{{ record.ord_amount }}</td>
+    <td>{{ record.deliverly | date:"Y-m-d" }}</td>
+    <td>{{ record.zmms }}</td>
+    <td>{{ record.material_duty | date:"Y-m-d" }}</td>
+    <td>{{ record.manage_memo | linebreaks | truncatechars:60 }}</td>
+  </tr>
+{% endfor %}
+</table>
+<div>
+
+    <a href="/dpsed/create/" >Create New</a>
+</div>
+
+
+{% endblock content %}

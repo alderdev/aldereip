@@ -7,7 +7,7 @@ class QuoteHeadCreateForm(forms.ModelForm):
     class Meta:
         model = QuoteHead
         #fields = ["category", "zmms", "manage_memo" ]
-        exclude = ('create_at','modify' )
+        exclude = ('create_at','modify' , 'invalid',)
         widgets = {
             'customer': forms.TextInput(attrs={'size':20, 'title':'Customer Number', }) ,
 

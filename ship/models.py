@@ -1,5 +1,10 @@
-from django.db import models
+
+
+#from datetime import date
+from django.utils import timezone
+
 from basic.models import Product
+from django.db import models
 
 # Create your models here.
 #幣別
@@ -31,7 +36,7 @@ class Customer(models.Model):
 # 報價單
 class QuoteHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
-    ord_date = models.DateField() #報價日期
+    ord_date = models.DateField(default=timezone.now) #報價日期
     customer = models.ForeignKey(Customer) #客戶編號
     effective_date = models.DateField() # 報價單有效日期
     currency = models.ForeignKey( Currency )

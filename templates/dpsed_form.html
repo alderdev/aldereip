@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content  %}
+
+  <p>{{ title }}</p>
+
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+<form action="" method="POST" >{% csrf_token %}
+  <p><label>Customer Number:</label><input id="sap_no_customer" name="customer" size="20" title="Customer Number" type="text"  onblur="showCustName(this.value)" cssStyle="width:60px" /></p>
+  <p><label>Customer Title:</label><input id="title_customer" name="title" size="20" type="text"  /></p>
+  <p><label>Customer:</label>{{ form.customer }}{{ record.customer.sap_no }}{{ record.customer.title }}</p>
+  <p><label>Request User:</label>{{ form.reuqest_user }}</p>
+  <p><label>Category:</label>{{ form.category }}</p>
+  <p><label>Material Ctrl:</label>{{ form.material_ctrl }}</p>
+  <p><label>Recevice Date:</label>{{ form.recevice_date }}</p>
+  <p><label>Ships Order:</label>{{ form.ships_order }}</p>
+  <p><label>Work Order:</label>{{ form.work_order }}</p>
+	<p><label>Product Number:</label><input id="sap_no_product" name="product" size="20" title="Product Number" type="text"  onblur="showProudct(this.value)" cssStyle="width:60px" /></p>
+	<p><label>Description:</label><input id="product_desc" name="title" size="20" type="text"  /></p>
+  <p><label>Product:</label>{{ form.product }}{{ record.product.sap_no }}</p>
+  <p><label>Description:</label>{{ record.product.product_desc }}</p>
+  <p><label>Amount:</label>{{ form.ord_amount }}</p>
+  <p><label>Deliverly:</label>{{ form.deliverly }}</p>
+  <p><label>Material Duty:</label>{{ form.material_duty }}</p>
+  <p><label>Comment:</label>{{ form.manage_memo }}</p>
+
+
+  <button type="submit" class="btn btn-primary" >Save</button>
+</form>
+
+
+
+{% endblock content %}

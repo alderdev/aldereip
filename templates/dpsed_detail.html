@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+
+{% block content  %}
+
+  <p>{{ title }}</p>
+<form action="" method="POST">{% csrf_token %}
+    {{ record.work_order }}
+
+    <button type="submit" class="btn btn-primary" >Submit</button>
+</form>
+{% endblock content %}

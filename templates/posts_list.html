@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content  %}
+
+<div>
+    <a href="/posts/create/">Create New</a>
+</div>
+
+  <div class="pagination">
+      <span>{{ title }}</span>
+      <span class="step-links">
+          {% if queryset.has_previous %}
+              <a href="?page={{ queryset.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ queryset.number }} of {{ queryset.paginator.num_pages }}.
+          </span>
+
+          {% if queryset.has_next %}
+              <a href="?page={{ queryset.next_page_number }}">next</a>
+          {% endif %}
+      </span>
+  </div>
+
+
+<div>
+
+
+{% for record in queryset %}
+<div>
+  <a href='{{ record.get_absoulte_url }}'>{{ record.subject | truncatechars:30 }}</a>
+  {{ record.create_at | date:"Y-m-d" }}
+
+    {{ record.content | linebreaks | truncatechars:60 }}
+    {{ record.modify | date:"Y-m-d"}}
+</div>
+{% endfor %}
+
+
+
+
+
+{% endblock content %}

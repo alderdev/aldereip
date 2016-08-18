@@ -47,17 +47,15 @@ def ship_list(request):
         queryset = paginator.page(1)
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)
-    print(queryset)
-    footer = "this is Footer"
 
     return render(request, "ship_list.html", locals())
 
 
-def create_header(request):
+def create_quote(request):
     title = "新增報價單"
     form = QuoteHeadCreateForm(request.POST or None)
 
-    return render(request, "ship_header.html", locals())
+    return render(request, "quote_header.html", locals())
 
 
 def quote_detail(request, id):
