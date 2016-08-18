@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from django.utils import timezone
 
 from reportlab.pdfgen import canvas
 from .models import QuoteHead, Customer
@@ -59,7 +60,11 @@ def create_quote(request):
     form = QuoteHeadCreateForm(request.POST or None)
 
     if form.is_valid():
-        print("Successfully is_valid")
+
+        order_date = request.POST['ord_date']
+        x = QuoteHead.objects.filter(ord_date__contains = order_date.replace('/','-')[:7] ).count()
+        order_number =  (int(date.replace('-','')[:6]) *10000)+ 1 + x
+        
         instance = form.save(commit=False)
         instance.save()
 

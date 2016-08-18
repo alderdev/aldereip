@@ -74,11 +74,3 @@
 </table>
 
 {% endblock content %}
-
-
-quotehead = models.ForeignKey(QuoteHead) #報價單編號
- = models.IntegerField() #行號
- = models.ForeignKey(Product) # 料號
- = models.FloatField() # 單價
- = models.CharField(max_length=50, blank=True, null=True) # 行備註
- = models.BooleanField(default=False) #作廢
