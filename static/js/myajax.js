@@ -76,8 +76,8 @@ function showProudct(id)
     if (xmlhttp.readyState==4 &&xmlhttp.status==404){
       window.alert("無效的料號");
       document.getElementById("product_desc").value = "";
-      document.getElementById("sap_no").focus() ;
-      document.getElementById("sap_no").selected = true;
+      document.getElementById("id_product").focus() ;
+      document.getElementById("id_product").selected = true;
       return;
     }
 
