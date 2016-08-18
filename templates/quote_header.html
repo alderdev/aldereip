@@ -6,7 +6,9 @@
 
 <form action="" method="POST">{% csrf_token %}
   <p>
-    <label>Customer Number:</label><input id="id_customer" name="customer" size="20" title="Customer Number" type="text" onblur="showCustName(this.value)" cssStyle="width:60px" />
+    <label>Customer Number:</label>
+    <input id="id_order_number" name="order_number" type="hidden" />
+    <input id="id_customer" name="customer" size="20" title="Customer Number" type="text" onblur="showCustName(this.value)" cssStyle="width:60px" />
     <span id="span_title"></span>
   </p>
   <p>

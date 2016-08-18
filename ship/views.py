@@ -59,13 +59,24 @@ def create_quote(request):
     title = "新增報價單"
     form = QuoteHeadCreateForm(request.POST or None)
 
+
+
+    #order_number =  (int(order_date.replace('-','')[:6]) *10000)+ 1 + x
+
     if form.is_valid():
 
-        order_date = request.POST['ord_date']
-        x = QuoteHead.objects.filter(ord_date__contains = order_date.replace('/','-')[:7] ).count()
-        order_number =  (int(date.replace('-','')[:6]) *10000)+ 1 + x
-        
+        order_date, _ = str(timezone.now()).split(' ')
+        nextNumber = QuoteHead.objects.filter(ord_date__contains = order_date[:7] ).count()+1
+        order_number = int(order_date[:7].replace('-',''))*10000
+        print(order_number+nextNumber)
+
+        #order_date = request.POST['ord_date']
+        #x = QuoteHead.objects.filter(ord_date__contains = order_date.replace('/','-')[:7] ).count()
+        #order_number =  (int(order_date.replace('-','')[:6]) *10000)+ 1 + x
+
         instance = form.save(commit=False)
+        instance.order_number = order_number+nextNumber
+        print(instance.order_number)
         instance.save()
 
         messages.success(request, "Successfully Create")
