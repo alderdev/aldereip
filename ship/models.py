@@ -36,7 +36,7 @@ class Customer(models.Model):
 # 報價單
 class QuoteHead(models.Model):
     request_user = models.CharField(max_length=60, null=False, blank=False) #開單人
-    order_number = models.IntegerField(null=True, blank=True)
+    order_number = models.IntegerField(null=True, blank=True, unique=True) #報價單號
     ord_date = models.DateField(default=timezone.now) #報價日期
     customer = models.ForeignKey(Customer) #客戶編號
     effective_date = models.DateField( default=timezone.now ) # 報價單有效日期
