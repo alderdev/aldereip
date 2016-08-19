@@ -49,21 +49,22 @@ def export_pdf(request):
     p.setFont('Helvetica', 10)
     p.drawRightString( 580, 810 , "Print Date: " + date)
 
+    p.drawRightString( 100, 760 , "Sales Name:"  )
+    p.drawRightString( 100, 750 , "Order Number:" )
+    p.drawRightString( 100, 740 , "Order Date:"  )
+    p.drawRightString( 100, 730 , "Effective Date:" )
+    p.drawRightString( 100, 720 , "Currency:"  )
+    p.drawRightString( 100, 710 , "Comment:"  )
 
-    
-    p.drawRightString( 150, 660 , "Sales Name:"  )
-    p.drawRightString( 150, 650 , "Order Number:" )
-    p.drawRightString( 150, 640 , "Order Date:"  )
-    p.drawRightString( 150, 630 , "Effective Date:" )
-    p.drawRightString( 150, 620 , "Currency:"  )
-    p.drawRightString( 150, 610 , "Comment:"  )
-
-    p.drawString( 160, 660 , record.request_user )
-    p.drawString( 160, 650 ,  str(record.order_number))
-    p.drawString( 160, 640 ,  str(record.ord_date) )
-    p.drawString( 160, 630 ,  str(record.effective_date))
-    p.drawString( 160, 620 ,  str(record.currency) )
-    p.drawString( 160, 610 ,  str(record.memo) )
+    p.drawString( 105, 760 ,  str(record.request_user) )
+    p.drawString( 105, 750 ,  str(record.order_number))
+    p.drawString( 105, 740 ,  str(record.ord_date) )
+    p.drawString( 105, 730 ,  str(record.effective_date))
+    p.drawString( 105, 720 ,  str(record.currency) )
+    x = 710
+    for line in record.memo:
+        x -= 10
+        p.drawString( 105, x ,  str(line) )
 
 
 

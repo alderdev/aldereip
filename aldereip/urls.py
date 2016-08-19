@@ -18,11 +18,13 @@ from django.conf.urls.static import static
 from django.conf.urls import  include, url
 from django.contrib import admin
 from .views import alderhome
+from post.views import PostList
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #url(r'^dps/',  include('dps.urls' , namespace="dps" )),
     url(r'^basic/',  include('basic.urls' , namespace="basic" )),
     url(r'^ship/',  include('ship.urls' , namespace="ship" )),
-    url(r'^$', alderhome ),
+    url(r'^post/',  include('post.urls' , namespace="post" )),
+    url(r'^$',  PostList.as_view() ),
 ]
