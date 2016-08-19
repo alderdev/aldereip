@@ -7,6 +7,39 @@ from basic.models import Product
 from django.db import models
 
 # Create your models here.
+
+#自訂單據號碼
+class OrderNumberManager(models.Manager):
+
+    #短的月份序號如：16080001
+    def short_month_sequence(self):
+        order_date, _ = str(timezone.now()).split(' ')
+        nextNumber = self.filter(create_at__contains = order_date[:7] ).count()+1
+        order_number = nextNumber + int(order_date[2:7].replace('-',''))*10000
+        return order_number
+
+    #月份序號如：2016080001
+    def month_sequence(self):
+        order_date, _ = str(timezone.now()).split(' ')
+        nextNumber = self.filter(create_at__contains = order_date[:7] ).count()+1
+        order_number = nextNumber + int(order_date[:7].replace('-',''))*10000
+        return order_number
+    #月份序號如：2016080001
+    def day_sequence(self):
+        order_date, _ = str(timezone.now()).split(' ')
+        nextNumber = self.filter(create_at__contains = order_date ).count()+1
+        order_number = nextNumber + int(order_date.replace('-',''))*10000
+        return order_number
+    #短的日序號如：1608310001
+    def short_day_sequence(self):
+        order_date, _ = str(timezone.now()).split(' ')
+        nextNumber = self.filter(create_at__contains = order_date ).count()+1
+        order_number = nextNumber + int(order_date.replace('-','')[2:])*10000
+        return order_number
+
+
+
+
 #幣別
 class Currency(models.Model):
     code = models.CharField(primary_key=True, max_length=3, )
@@ -46,6 +79,8 @@ class QuoteHead(models.Model):
 
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
+
+    objects = OrderNumberManager()
 
 
     def get_absoulte_url(self):

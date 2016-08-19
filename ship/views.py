@@ -59,23 +59,10 @@ def create_quote(request):
     title = "新增報價單"
     form = QuoteHeadCreateForm(request.POST or None)
 
-
-
-    #order_number =  (int(order_date.replace('-','')[:6]) *10000)+ 1 + x
-
     if form.is_valid():
 
-        order_date, _ = str(timezone.now()).split(' ')
-        nextNumber = QuoteHead.objects.filter(ord_date__contains = order_date[:7] ).count()+1
-        order_number = int(order_date[:7].replace('-',''))*10000
-        print(order_number+nextNumber)
-
-        #order_date = request.POST['ord_date']
-        #x = QuoteHead.objects.filter(ord_date__contains = order_date.replace('/','-')[:7] ).count()
-        #order_number =  (int(order_date.replace('-','')[:6]) *10000)+ 1 + x
-
         instance = form.save(commit=False)
-        instance.order_number = order_number+nextNumber
+        instance.order_number = QuoteHead.objects.month_sequence()  # 自訂的單據號碼
         print(instance.order_number)
         instance.save()
 
@@ -90,11 +77,11 @@ def quote_detail(request, id):
     record = get_object_or_404( QuoteHead, id=id)
 
     form = QuoteLineCreateForm(request.POST or None )
-    #print( form.quotehead.id )
+
     if form.is_valid():
 
         instance = form.save(commit=False)
-        print( instance.get_absoulte_url() )
+        #print( instance.get_absoulte_url() )
         instance.save()
         messages.success(request, "Successfully Create Line")
         return HttpResponseRedirect(instance.get_absoulte_url())
@@ -111,7 +98,7 @@ def quote_create_line(request):
     if form.is_valid():
 
         instance = form.save(commit=False)
-        print( instance.get_absoulte_url() )
+        #print( instance.get_absoulte_url() )
         instance.save()
         messages.success(request, "Successfully Create Line")
         return HttpResponseRedirect(instance.get_absoulte_url())
@@ -121,20 +108,7 @@ def quote_create_line(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# 給AJAX用來回傳客戶資料
 def customer_name(request,id):
 
     obj = get_object_or_404( Customer, sap_no=id)
