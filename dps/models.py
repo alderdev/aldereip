@@ -33,3 +33,6 @@ class WorkOrder(models.Model):
 
     def __str__(self):
         return self.work_order
+
+    def get_absoulte_url(self):
+            return "/dps/detail/%s/" %( str(self.id ) )

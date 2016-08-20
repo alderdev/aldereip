@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'basic',
     'ship',
     'post',
+    'dps',
 
 ]
 

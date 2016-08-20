@@ -39,7 +39,7 @@
     <th>生管備註</th>
   </tr>
 
-{% for record in queryset %}
+{% for record in object_list %}
   <tr>
     <td>{{ record.recevice_date | date:"Y-m-d" }}</td>
     <td><a href='{{ record.get_absoulte_url }}'>{{ record.category }}</a></td>
@@ -56,6 +56,7 @@
     <td>{{ record.manage_memo | linebreaks | truncatechars:60 }}</td>
   </tr>
 {% endfor %}
+{{ record.ord_amount }}
 </table>
 <div>
 

@@ -13,7 +13,7 @@
 </ul>
 {% endif %}
 <form action="" method="POST">{% csrf_token %}
-    {{ record.work_order }}
+    {{ object.work_order }}
 
     <button type="submit" class="btn btn-primary" >Submit</button>
 </form>

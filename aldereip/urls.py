@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^basic/',  include('basic.urls' , namespace="basic" )),
     url(r'^ship/',  include('ship.urls' , namespace="ship" )),
     url(r'^post/',  include('post.urls' , namespace="post" )),
+    url(r'^dps/',  include('dps.urls' , namespace="dps" )),
     url(r'^$',  PostList.as_view() ),
 ]
