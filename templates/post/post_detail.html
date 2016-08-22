@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+
+{% block content  %}
+
+  <p>{{ title }}</p>
+  <div class="col-sm-8 col-md-10 col-sm-offset-1 col-md-offset-1" >
+  <p ><h2>Subject: <a href='{{ object.get_absoulte_url }}'>{{ object.subject }}</a>
+    <span><small>Publish: {{ object.create_at | date:"Y-m-d H:i:s" }}</small></span>
+    </h2>
+  </p>
+  <br>
+  <p>{{ object.content | linebreaks }}</p>
+
+  <br>
+      <span align="right">Last Modify: {{ object.modify | date:"Y-m-d H:i:s" }}</span>
+  </div>
+
+{% endblock content %}

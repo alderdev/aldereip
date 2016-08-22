@@ -29,7 +29,6 @@ class Product(models.Model):
     category = models.ForeignKey(ProductCategory) #料品分類
     cycle_status = models.ForeignKey(CycleStatus) # 料品狀態
 
-
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False) #
     modify = models.DateTimeField(auto_now_add=False, auto_now =True) #
 
