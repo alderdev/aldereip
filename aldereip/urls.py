@@ -22,10 +22,16 @@ from post.views import PostList
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^dps/',  include('dps.urls' , namespace="dps" )),
+    url(r'^product/',  include('product.urls' , namespace="product" )),
     url(r'^basic/',  include('basic.urls' , namespace="basic" )),
     url(r'^ship/',  include('ship.urls' , namespace="ship" )),
     url(r'^post/',  include('post.urls' , namespace="post" )),
     url(r'^dps/',  include('dps.urls' , namespace="dps" )),
     url(r'^$',  PostList.as_view() ),
 ]
+
+
+'''
+if settings.DEBUG:
+    urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+'''

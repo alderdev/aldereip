@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content  %}
+
+
+  {% if product.image %}
+<p>  <img src="{{ product.image.url }}" class="img-responsive"/></p>
+{% endif %}
+
+  <p>{{ product.sap_no }}</p>
+  <p>{{ product.product_desc }}</p>
+  <p>{{ product.specification }}</p>
+
+
+{% endblock content %}
