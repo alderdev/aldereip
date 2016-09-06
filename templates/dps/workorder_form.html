@@ -14,9 +14,10 @@
   </ul>
   {% endif %}
 <form action="" method="POST" >{% csrf_token %}
-  <p><label>Customer Number:</label><input id="sap_no_customer" name="customer" size="20" title="Customer Number" type="text"  onblur="showCustName(this.value)" cssStyle="width:60px" /></p>
-  <p><label>Customer Title:</label><input id="title_customer" name="title" size="20" type="text"  /></p>
-  <p><label>Customer:</label>{{ form.customer }}{{ record.customer.sap_no }}{{ record.customer.title }}</p>
+  <p><label>Customer Number:</label><input id="sap_no_customer" name="customer" size="20" title="Customer Number" type="text"  onblur="showCustName(this.value)" cssStyle="width:60px" />
+  </p>
+  <p><label>Customer Title:</label><span id="span_title"></span></p>
+
   <p><label>Request User:</label>{{ form.reuqest_user }}</p>
   <p><label>Category:</label>{{ form.category }}</p>
   <p><label>Material Ctrl:</label>{{ form.material_ctrl }}</p>
@@ -31,8 +32,6 @@
   <p><label>Deliverly:</label>{{ form.deliverly }}</p>
   <p><label>Material Duty:</label>{{ form.material_duty }}</p>
   <p><label>Comment:</label>{{ form.manage_memo }}</p>
-
-
   <button type="submit" class="btn btn-primary" >Save</button>
 </form>
 

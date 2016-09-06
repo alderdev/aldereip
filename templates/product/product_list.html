@@ -35,13 +35,13 @@
       <img src="{{ record.image.url }}"  class="img-responsive"/>
     {% endif %}
 
-  <h3><a href='{{ record.get_absoulte_url }}'>{{ record.product_desc | truncatechars:30 }}</a>
+  <h3><a href='{{ record.get_absolute_url }}'>{{ record.product_desc | truncatechars:30 }}</a>
     <small>{{ record.create_at | timesince }}</small>
 </h3>
 
     <p>{{ record.specification | linebreaks | truncatechars:80 }}</p>
     {{ record.modify | date:"Y-m-d"}}
-    <a href='{{ record.get_absoulte_url }}' class="btn btn-primary" role="button">View</a>
+    <a href='{{ record.get_absolute_url }}' class="btn btn-primary" role="button">View</a>
 
 </div>
 {% endfor %}

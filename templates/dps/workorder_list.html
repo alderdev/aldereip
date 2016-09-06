@@ -42,8 +42,8 @@
 {% for record in object_list %}
   <tr>
     <td>{{ record.recevice_date | date:"Y-m-d" }}</td>
-    <td><a href='{{ record.get_absoulte_url }}'>{{ record.category }}</a></td>
-    <td><a href='{{ record.get_absoulte_url }}'>{{ record.work_order }}</a></td>
+    <td><a href='{{ record.get_absolute_url }}'>{{ record.category }}</a></td>
+    <td><a href='{{ record.get_absolute_url }}'>{{ record.work_order }}</a></td>
     <td>{{ record.material_ctrl }}</td>
     <td>{{ record.ships_order }}</td>
     <td>{{ record.customer.title }}</td>

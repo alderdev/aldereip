@@ -28,13 +28,13 @@
 
 {% for record in object_list %}
 <div class="col-sm-6 col-md-4">
-  <h3><a href='{{ record.get_absoulte_url }}'>{{ record.subject | truncatechars:30 }}</a>
+  <h3><a href='{{ record.get_absolute_url }}'>{{ record.subject | truncatechars:30 }}</a>
     <small>{{ record.create_at | timesince }}</small>
 </h3>
 
     <p>{{ record.content | linebreaks | truncatechars:80 }}</p>
     {{ record.modify | date:"Y-m-d"}}
-    <a href='{{ record.get_absoulte_url }}' class="btn btn-primary" role="button">View</a>
+    <a href='{{ record.get_absolute_url }}' class="btn btn-primary" role="button">View</a>
 
 </div>
 {% endfor %}

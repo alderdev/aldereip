@@ -7,7 +7,7 @@ from .models import Post
 class PostList(ListView):
     model = Post
     #context_object_name = 'my_favorite_publishers'
-    
+
 
 
 class PostDetail(DetailView):
@@ -23,6 +23,7 @@ class PostDetail(DetailView):
 class PostCreate(CreateView):
     model = Post
     fields = ['subject', 'content']
+    success_url = '/post'
     #success_url = reverse_lazy('post_list')
 
 

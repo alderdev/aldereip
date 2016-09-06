@@ -23,7 +23,7 @@ class Product(models.Model):
     sap_no = models.CharField(primary_key=True, max_length=36) # SAP料號
     product_desc = models.CharField(max_length=36, null=False, blank=False) # 品名
     specification = models.CharField(max_length=100, null=True, blank=True) # 規格
-    image = models.ImageField( null=True, blank=True, height_field="height_field", width_field="width_field")
+    image = models.ImageField( upload_to="/media", null=True, blank=True, height_field="height_field", width_field="width_field")
     height_field = models.IntegerField(default=0)
     width_field = models.IntegerField(default=0)
     category = models.ForeignKey(ProductCategory) #料品分類
@@ -36,5 +36,5 @@ class Product(models.Model):
         return ("%s : %s" % (self.sap_no,self.product_desc ) )
 
 
-    def get_absoulte_url(self):
+    def get_absolute_url(self):
         return "/product/detail/%s/" %( str(self.sap_no) )

@@ -15,8 +15,8 @@
 <form action="" method="POST">{% csrf_token %}
     <p>工單編號: {{ object.work_order }}</p>
     <p>單據類型: {{ object.category }}</p>
-    <p>{{ object.zmms }}</p>
-    <p>收單日期: {{ object.recevice_date }}</p>
+    <p>ZMMS: {{ object.zmms }}</p>
+    <p>收單日期: {{ object.recevice_date | date:'Y-m-d' }}</p>
     <p>物料控管: {{ object.material_ctrl }}</p>
     <p>銷售單號: {{ object.ships_order }}</p>
     <p>客戶編號: {{ object.customer.sap_no }}</p>
@@ -25,7 +25,7 @@
     <p>品名:  {{ object.product.product_desc }} </p>
     <p>規格:  {{ object.product.specification }} </p>
     <p>工單數量: {{ object.ord_amount }}</p>
-    <p>預定出貨: {{ object.deliverly }}</p>
+    <p>預定出貨: {{ object.deliverly | date:'Y-m-d' }}</p>
     <p>齊料日期: {{ object.material_ready_date }}</p>
     <p>預定完工: {{ object.estimated_finish }}</p>
     <p>銷售人員: {{ object.reuqest_user }}</p>

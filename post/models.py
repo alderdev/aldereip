@@ -13,13 +13,16 @@ class Post(models.Model):
     def __str__(self):
         return self.subject
 
-    def get_absoulte_url(self):
 
-        #return reverse('.views.detail', args=[str(self.id)])
-        return "/post/detail/%s/" %( str(self.id) )
-
-'''
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+
+        return reverse('post:detail', kwargs={ 'pk':self.pk} )
+        #return "/post/detail/%s/" %( str(self.id) )
 
 '''
+
+
+    def get_absolute_url(self):
+        return reverse('post:detail', kwargs={'pk': self.id})
+
+    '''

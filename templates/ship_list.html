@@ -48,9 +48,9 @@
 {% for record in queryset %}
   <tr>
     <td>{{ record.invalid }}</td>
-    <td><a href='{{ record.get_absoulte_url }}'>{{ record.ord_date | date:"Y-m-d" }}</a></td>
-    <td><a href='{{ record.get_absoulte_url }}'>{{ record.order_number }}</a></td>
-    <td><a href='{{ record.get_absoulte_url }}'>{{ record.request_user }}</a></td>
+    <td><a href='{{ record.get_absolute_url }}'>{{ record.ord_date | date:"Y-m-d" }}</a></td>
+    <td><a href='{{ record.get_absolute_url }}'>{{ record.order_number }}</a></td>
+    <td><a href='{{ record.get_absolute_url }}'>{{ record.request_user }}</a></td>
     <td>{{ record.customer.title }}</td>
     <td>{{ record.currency }}</td>
     <td>{{ record.effective_date | date:"Y-m-d" }}</td>

@@ -83,7 +83,7 @@ class QuoteHead(models.Model):
     objects = OrderNumberManager()
 
 
-    def get_absoulte_url(self):
+    def get_absolute_url(self):
 
         return "/ship/detail/%s/" %( str(self.id) )
 
@@ -100,7 +100,7 @@ class QuoteDetail(models.Model):
     create_at = models.DateTimeField(auto_now_add=True, auto_now =False)
     modify = models.DateTimeField(auto_now_add=False, auto_now =True)
 
-    def get_absoulte_url(self):
+    def get_absolute_url(self):
         return "/ship/detail/%s/" %( str(self.quotehead.id ) )
 
 

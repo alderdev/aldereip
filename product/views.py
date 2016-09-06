@@ -25,6 +25,7 @@ class ProductCreate(CreateView):
     title = "Create New Product"
     model = Product
     fields = ['sap_no', 'product_desc', 'specification', 'image','height_field', 'width_field', 'category', 'cycle_status']
+    success_url = '/product'
 
 
 
