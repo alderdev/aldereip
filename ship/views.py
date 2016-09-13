@@ -88,9 +88,6 @@ def export_pdf(request):
 
 
 
-
-
-
 def ship_list(request):
     title = "銷售管理"
 
@@ -116,7 +113,7 @@ def create_quote(request):
 
         instance = form.save(commit=False)
         instance.order_number = QuoteHead.objects.month_sequence()  # 自訂的單據號碼
-        print(instance.order_number)
+        #print(instance.order_number)
         instance.save()
 
         messages.success(request, "Successfully Create")
@@ -154,7 +151,7 @@ def quote_create_line(request):
         #print( instance.get_absoulte_url() )
         instance.save()
         messages.success(request, "Successfully Create Line")
-        return HttpResponseRedirect(instance.get_absoulte_url())
+        return HttpResponseRedirect(instance.get_absolute_url())
 
     return render(request, "quote_detail.html", locals())
 
