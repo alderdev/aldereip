@@ -27,11 +27,13 @@ urlpatterns = [
     url(r'^ship/',  include('ship.urls' , namespace="ship" )),
     url(r'^post/',  include('post.urls' , namespace="post" )),
     url(r'^dps/',  include('dps.urls' , namespace="dps" )),
+    url(r'^shop/',  include('shop.urls' , namespace="shop" )),
+    url(r'^cart/',  include('cart.urls' , namespace="cart" )),
     url(r'^$',  PostList.as_view() ),
 ]
 
 
-'''
+
 if settings.DEBUG:
-    urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-'''
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
